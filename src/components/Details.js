@@ -77,7 +77,9 @@ class Details extends React.Component {
                 <h1>Would you like to adopt {name}?</h1>
                 <div className="buttons">
                   <button onClick={this.adopt}>Yes</button>
-                  <button onClick={this.toggleModal}>No</button>
+                  <button onClick={this.toggleModal}>
+                    No, no....not yet...
+                  </button>
                 </div>
               </div>
             </Modal>

@@ -1,13 +1,17 @@
 * {
   box-sizing: border-box;
-  color: #333;
+  color: whitesmoke;
 }
 
 body {
-  background-color: #81a69b;
+  background-color: rgb(78, 145, 125);
   background-image: url(http://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-background.png);
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.lastChance h1 {
+  color: #122622;
 }
 
 .search-params {
@@ -16,7 +20,7 @@ body {
 }
 
 .search-params form {
-  background-color: #d9c148;
+  background-color: rgba(52, 87, 202, 0.6);
   width: 360px;
   margin: 0px 25px 0px 0px;
   padding: 35px 15px 15px 15px;
@@ -25,7 +29,7 @@ body {
 }
 
 .search {
-  background-color: #d9c148;
+  background-color: rgba(52, 87, 202, 0.4);
   width: 715px;
   padding: 15px;
   border-radius: 9px;
@@ -36,7 +40,7 @@ body {
 .details {
   width: 1100px;
   margin: 0 auto;
-  background-color: #d9c148;
+  background-color: rgba(52, 87, 202, 0.5);
   padding: 15px;
   border-radius: 9px;
   margin-bottom: 25px;
@@ -77,11 +81,12 @@ body {
   white-space: nowrap;
   font-weight: normal;
   font-size: 30px;
-  color: #bf3334;
+  color: black;
   width: 95%;
   overflow: hidden;
   margin: 0;
   text-overflow: ellipsis;
+  text-shadow: 0.3px 0.5px whitesmoke;
 }
 
 header > a,
@@ -127,7 +132,7 @@ header {
 
 .details h1 {
   text-align: center;
-  color: #bf3334;
+  color: #122622;
   font-size: 60px;
   margin: 5px 0px;
 }
@@ -180,6 +185,7 @@ header {
   font-size: 18px;
   height: 30px;
   width: 325px;
+  color: black;
 }
 
 .search-params button,
