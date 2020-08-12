@@ -1,6 +1,14 @@
 import React from "react";
 import { Link } from "@reach/router";
-import { css } from "@emotion/core";
+import { css, keyframes } from "@emotion/core";
+
+const spin = keyframes`
+
+  to { 
+    transform: rotate(360deg);
+    }
+
+`;
 
 const NavBar = () => (
   <header
@@ -10,7 +18,18 @@ const NavBar = () => (
     `}
   >
     <Link to="/">Adopt Me!</Link>
-    <span role="img" aria-label="logo">
+    <span
+      css={css`
+        font-size: 60px;
+        display: inline-block;
+
+        &:hover {
+          animation: 1s ${spin} linear infinite;
+        }
+      `}
+      role="img"
+      aria-label="logo"
+    >
       🐕
     </span>
   </header>
