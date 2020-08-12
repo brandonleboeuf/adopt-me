@@ -7,7 +7,6 @@ const spin = keyframes`
   to { 
     transform: rotate(360deg);
     }
-
 `;
 
 const NavBar = () => (

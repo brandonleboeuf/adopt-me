@@ -1,14 +1,24 @@
 import React from "react";
-import pet from "@frontendmasters/pet";
+import pet, { Photo } from "@frontendmasters/pet";
+import { navigate, RouteComponentProps } from "@reach/router";
 import Carousel from "./Carousel";
+import Modal from "./Modal";
 import ErrorBoundry from "../ErrorBoundary";
 import ThemeContext from "./hooks/ThemeContext";
-import { navigate } from "@reach/router";
-import Modal from "./Modal";
 
-class Details extends React.Component {
+class Details extends React.Component<RouteComponentProps<{ id: string }>> {
   // newly preopsed syntax for 'state'
-  state = { loading: true, showModal: false };
+  public state = {
+    loading: true,
+    showModal: false,
+    name: "",
+    animal: "",
+    breed: "",
+    location: "",
+    description: "",
+    media: [] as Photo[],
+    url: "",
+  };
 
   // constructor(props) {
   //   super(props);
@@ -19,26 +29,34 @@ class Details extends React.Component {
   //   };
   // }
 
-  componentDidMount() {
-    pet.animal(this.props.id).then(({ animal }) => {
-      this.setState({
-        url: animal.url,
-        name: animal.name,
-        animal: animal.type,
-        location: `${animal.contact.address.city}, ${animal.contact.address.state}`,
-        description: animal.description,
-        media: animal.photos,
-        breed: animal.breeds.primary,
-        loading: false,
-      });
-    }, console.error);
+  public componentDidMount() {
+    if (!this.props.id) {
+      navigate("/");
+      return;
+    }
+    pet
+      .animal(+this.props.id)
+      .then(({ animal }) => {
+        this.setState({
+          url: animal.url,
+          name: animal.name,
+          animal: animal.type,
+          location: `${animal.contact.address.city}, ${animal.contact.address.state}`,
+          description: animal.description,
+          media: animal.photos,
+          breed: animal.breeds.primary,
+          loading: false,
+        });
+      })
+      .catch((err: Error) => this.setState({ error: err }));
   }
 
-  toggleModal = () => this.setState({ showModal: !this.state.showModal });
+  public toggleModal = () =>
+    this.setState({ showModal: !this.state.showModal });
 
-  adopt = () => navigate(this.state.url);
+  public adopt = () => navigate(this.state.url);
 
-  render() {
+  public render() {
     if (this.state.loading) {
       return <h1>loading...</h1>;
     }
@@ -90,7 +108,9 @@ class Details extends React.Component {
   }
 }
 
-export default function DetailsWithErrorBoundry(props) {
+export default function DetailsWithErrorBoundry(
+  props: RouteComponentProps<{ id: string }>
+) {
   return (
     <ErrorBoundry>
       <Details {...props} />
